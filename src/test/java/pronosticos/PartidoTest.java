@@ -1,12 +1,13 @@
-package test.pronosticos;
-import static org.junit.Assert.assertEquals;
+package pronosticos;
 
+import negocio.EnumResultado;
+import negocio.Equipo;
+import negocio.Partido;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.Main.negocio.EnumResultado;
-import java.Main.negocio.Equipo;
-import java.Main.negocio.Partido;
+import static org.junit.Assert.assertEquals;
+
 
 public class PartidoTest {
 
