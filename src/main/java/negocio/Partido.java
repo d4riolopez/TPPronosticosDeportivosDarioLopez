@@ -5,7 +5,7 @@ public class Partido {
     private Equipo equipo2; //tambien lo mismo
     private int golesEq1; //cantidad goles de equipo1
     private int golesEq2;//cantidad goles de equipo2
-    private int ronda;//cantidad ronda de partidos
+    private int ronda;//numero de la ronda en el que esta el partido
 
     public Partido(Equipo equipo1, Equipo equipo2) {//constructor de partido con  equipos 1 y 2
         super();
