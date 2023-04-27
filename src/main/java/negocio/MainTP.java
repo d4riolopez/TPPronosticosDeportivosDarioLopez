@@ -42,11 +42,11 @@ public class MainTP {
             }
 
         }
-        // Leer pronostico
+        // Leer pronostico del partido con valores apareados clave valor
         Map<String,Integer> puntosParticipante = new HashMap<>();
 
 
-        //int puntos = 0; // total puntos pesona
+        //int puntos = 0; // Acumulador de total puntos persona apostadora
 
         Path pathPronostico = Paths.get(args[1]);
         List<String> lineasPronostico = null;
