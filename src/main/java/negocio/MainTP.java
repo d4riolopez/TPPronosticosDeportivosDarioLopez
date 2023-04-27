@@ -37,6 +37,7 @@ public class MainTP {
                 Partido partido = new Partido(equipo1, equipo2);
                 partido.setGolesEq1(Integer.parseInt(campos[1]));
                 partido.setGolesEq2(Integer.parseInt(campos[2]));
+
                 partido.setRonda(Integer.parseInt(campos[4]));
                 partidos.add(partido);
             }
