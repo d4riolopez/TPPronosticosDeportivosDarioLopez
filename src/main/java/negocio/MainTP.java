@@ -30,7 +30,7 @@ public class MainTP {
             if (primera) {
                 primera = false;
             } else {
-                // Argentina,1,2,Arabia Saudita
+                // Argentina,1,2,Arabia Saudita,ronda
                 String[] campos = lineaResultado.split(",");
                 Equipo equipo1 = new Equipo(campos[0]);
                 Equipo equipo2 = new Equipo(campos[3]);

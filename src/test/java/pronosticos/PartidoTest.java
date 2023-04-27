@@ -20,7 +20,7 @@ public class PartidoTest {
         this.equipo1 = new Equipo("Argentina");
         this.equipo2 = new Equipo("Arabia Saudita");
         this.partido = new Partido(this.equipo1,
-                this.equipo2, 1, 2);
+                this.equipo2, 1, 1);
     }
 
     @Test
