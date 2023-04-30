@@ -23,7 +23,7 @@ public class MainTP {
         } catch (IOException e) {
             System.out.println("No se pudo leer la linea de resultados...");
             System.out.println(e.getMessage());
-            System.exit(1);
+            //System.exit(1);
         }
         boolean primera = true;
         for (String lineaResultado : lineasResultados) {
@@ -37,7 +37,6 @@ public class MainTP {
                 Partido partido = new Partido(equipo1, equipo2);
                 partido.setGolesEq1(Integer.parseInt(campos[1]));
                 partido.setGolesEq2(Integer.parseInt(campos[2]));
-
                 partido.setRonda(Integer.parseInt(campos[4]));
                 partidos.add(partido);
             }
@@ -47,7 +46,7 @@ public class MainTP {
         Map<String,Integer> puntosParticipante = new HashMap<>();
 
 
-        //int puntos = 0; // Acumulador de total puntos persona apostadora
+        int puntos = 0; // Acumulador de total puntos persona apostadora
 
         Path pathPronostico = Paths.get(args[1]);
         List<String> lineasPronostico = null;
