@@ -1,11 +1,12 @@
-package negocio;
+package entity;
+
 //Clase partido
 public class Partido {
     private Equipo equipo1; //atributo referencial a un objeto equipo
     private Equipo equipo2; //tambien lo mismo
     private int golesEq1; //cantidad goles de equipo1
     private int golesEq2;//cantidad goles de equipo2
-    private int ronda;//numero de la ronda en el que esta el partido
+    private Ronda ronda;//atributo referencial a el que esta el partido
 
     public Partido(Equipo equipo1, Equipo equipo2) {//constructor de partido con  equipos 1 y 2
         super();
@@ -23,11 +24,11 @@ public class Partido {
 
 
     //toma ronda para  del partido
-    public int getRonda() {
+    public Ronda getRonda() {
         return ronda;
     }
     //asigna la ronda del partido
-    public void setRonda(int ronda) {
+    public void setRonda(Ronda ronda) {
         this.ronda = ronda;
     }
     // getter de equipo 1  getters de equipo2
@@ -75,7 +76,7 @@ public class Partido {
                 return EnumResultado.PERDEDOR;
             }
         }
-
+   //throw new EquipoNoValidoException();
     }
 }
 

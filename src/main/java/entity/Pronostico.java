@@ -1,4 +1,5 @@
-package negocio;
+package entity;
+
 //clase pronostico
 public class Pronostico {
     private Partido partido;// referencia a partido

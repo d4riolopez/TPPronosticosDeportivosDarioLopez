@@ -1,8 +1,8 @@
 package pronosticos;
 
-import negocio.EnumResultado;
-import negocio.Equipo;
-import negocio.Partido;
+import entity.EnumResultado;
+import entity.Equipo;
+import entity.Partido;
 import org.junit.Before;
 import org.junit.Test;
 

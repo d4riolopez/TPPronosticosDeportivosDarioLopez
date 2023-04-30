@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TPPronosticosDeportivosDarioLopez.iml" filepath="$PROJECT_DIR$/TPPronosticosDeportivosDarioLopez.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TPPronosticos.iml" filepath="$PROJECT_DIR$/TPPronosticos.iml" />
     </modules>
   </component>
 </project>

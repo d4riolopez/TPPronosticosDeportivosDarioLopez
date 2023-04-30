@@ -1,4 +1,4 @@
-package negocio;
+package entity;
 
 public class Equipo {
 

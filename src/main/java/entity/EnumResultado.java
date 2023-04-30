@@ -1,4 +1,4 @@
-package negocio;
+package entity;
 //objeto enumeracion , estructura que agrupa conjunto de string constantes
 public enum EnumResultado {
     GANADOR,PERDEDOR,EMPATE
