@@ -42,7 +42,7 @@ public class FixtureCsv {
         try {
             lineasResultados = Files.readAllLines(pathResultados);
         } catch (IOException e) {
-            throw new ArchResultadoException(this.archivoCsv);
+            throw new ArchResultadoException();//this.archivoCsv);
         }
         boolean primera = true;
         for (String lineaResultado : lineasResultados) {
@@ -63,14 +63,10 @@ public class FixtureCsv {
                     ronda = rondas.get(nroRonda);
                 }
 
-
                 ronda.addPartido(partido);
-
-
                 partido.setRonda(ronda);
                 partidos.add(partido);
             }
-
         }
     }
 
