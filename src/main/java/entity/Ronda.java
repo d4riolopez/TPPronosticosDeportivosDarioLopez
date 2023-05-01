@@ -8,10 +8,14 @@ public class Ronda {
     private Integer numero;
     private List<Partido> partidos;
 
-    public Ronda(Integer numero) {
+    public Ronda(int num) {
         super();
         this.numero = numero;
         this.partidos = new ArrayList<Partido>();
+    }
+
+    public Ronda(String campo) {
+
     }
 
     public Integer getNumero() {

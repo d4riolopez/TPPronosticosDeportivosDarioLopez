@@ -57,7 +57,9 @@ public class Partido {
         this.golesEq2 = golesEq2;
     }
     // metodo resultado de tipo enumResultado le paso un equipo  y compara los goles de los equipos y
+
     //asigna si es empate, ganador o perdedor
+
     public EnumResultado resultado(Equipo equipo) {
         if(golesEq1 == golesEq2) {
             return EnumResultado.EMPATE;
@@ -76,7 +78,6 @@ public class Partido {
                 return EnumResultado.PERDEDOR;
             }
         }
-   //throw new EquipoNoValidoException();
     }
 }
 

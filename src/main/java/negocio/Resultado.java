@@ -10,29 +10,33 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class FixtureCsv {
+public class Resultado {
     private String archivoCsv;
 
     private Collection<Partido> partidos ;
     private Map<Integer, Ronda> rondas;
 
-    public FixtureCsv(String pathCompleto) {
+    public Resultado(String pathCompleto) {
         super();
         this.archivoCsv = pathCompleto;
         this.partidos = new ArrayList<Partido>();
-        this.rondas = new HashMap<>();
+        this.rondas = new HashMap<Integer, Ronda>();
     }
 
     /**
      * @param campos
      * @return
      */
-    private Partido crearPartidoDeCampos(String[] campos) {
+    // Argentina,1,2,Arabia Saudita,1
+    private Partido crearPartidoDeApuesta(String[] campos) {
         Equipo equipo1 = new Equipo(campos[0]);
         Equipo equipo2 = new Equipo(campos[3]);
         Partido partido = new Partido(equipo1, equipo2);
         partido.setGolesEq1(Integer.parseInt(campos[1]));
         partido.setGolesEq2(Integer.parseInt(campos[2]));
+        Ronda ronda = new Ronda(0);
+        ronda.setNumero(Integer.parseInt(campos[4]));
+
         return partido;
     }
 
@@ -49,13 +53,11 @@ public class FixtureCsv {
             if (primera) {
                 primera = false;
             } else {
-                // Argentina,1,2,Arabia Saudita
+                // Argentina,1,2,Arabia Saudita,4
                 String[] campos = lineaResultado.split(",");
-                Partido partido = crearPartidoDeCampos(campos);
-
+                Partido partido = crearPartidoDeApuesta(campos);
                 int nroRonda = Integer.parseInt(campos[4]);
                 Ronda ronda = null;
-
                 if( ! rondas.containsKey(nroRonda)) {
                     ronda = new Ronda(nroRonda);
                     rondas.put(nroRonda, ronda);
@@ -70,7 +72,7 @@ public class FixtureCsv {
         }
     }
 
-    public Partido partidoDe(Equipo equipo1, Equipo equipo2)
+    public Partido partidoDeApuesta(Equipo equipo1, Equipo equipo2)
             throws PartidoNoEncontradoException {
 
         for (Partido partidoCol : partidos) {

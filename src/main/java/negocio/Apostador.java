@@ -5,12 +5,12 @@ import entity.Pronostico;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Jugador {
+public class Apostador {
     private String nombre;
     private List<Pronostico> pronosticos;
     private Integer puntosXBonus;
 
-    public Jugador(String nombre) {
+    public Apostador(String nombre) {
         super();
         this.nombre = nombre;
         this.pronosticos = new ArrayList<Pronostico>();

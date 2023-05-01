@@ -1,9 +1,9 @@
 package presentacion;
 
 import entity.*;
+import negocio.Apostador;
 import negocio.ArchResultadoException;
-import negocio.FixtureCsv;
-import negocio.Jugador;
+import negocio.Resultado;
 import negocio.PartidoNoEncontradoException;
 
 import java.io.IOException;
@@ -17,10 +17,11 @@ import java.util.Map;
 public class mainPronosticos {
     public static void main(String[] args) throws PartidoNoEncontradoException {
 
-           FixtureCsv fixture = new FixtureCsv(args[0]);
+            // Leer partidos reales en archivo resultados.csv
+        Resultado resultado = new Resultado(args[0]);
 
             try {
-                fixture.cargar();
+                resultado.cargar();
             } catch (ArchResultadoException e) {
                 System.out.println("No se pudo leer el archivo de resultados: ");
                         //+ e.getArchivoCsv());
@@ -28,8 +29,8 @@ public class mainPronosticos {
                 System.exit(1);
             }
 
-            // Leer pronostico
-            Map<String,Jugador> jugadores = new HashMap<>();
+            // Leer pronostico del apostador po el archivo pronostico.csv
+            Map<String, Apostador> apostadores = new HashMap<>();
 
             Path pathPronostico = Paths.get(args[1]);
             List<String> lineasPronostico = null;
@@ -48,62 +49,61 @@ public class mainPronosticos {
                     String[] campos = lineaPronostico.split(",");
                     Equipo equipo1 = new Equipo(campos[0]);
                     Equipo equipo2 = new Equipo(campos[4]);
-                    Partido partido = fixture.partidoDe(equipo1,equipo2);
-
+                    Ronda ronda = new Ronda(campos[5]);
+                    Partido partido = resultado.partidoDeApuesta(equipo1,equipo2);
 
                     Equipo equipo = null;
-                    EnumResultado resultado = null;
+                    EnumResultado resultadoPartido = null;
                     if("X".equals(campos[1])) {
                         equipo = equipo1;
-                        resultado = EnumResultado.GANADOR;
+                        resultadoPartido = EnumResultado.GANADOR;
                     }
                     if("X".equals(campos[2])) {
                         equipo = equipo1;
-                        resultado = EnumResultado.EMPATE;
+                        resultadoPartido = EnumResultado.EMPATE;
                     }
                     if("X".equals(campos[3])) {
                         equipo = equipo1;
-                        resultado = EnumResultado.PERDEDOR;
+                        resultadoPartido = EnumResultado.PERDEDOR;
                     }
-                    Pronostico pronostico = new Pronostico(partido, equipo, resultado);
+                    Pronostico pronostico = new Pronostico(partido, equipo, resultadoPartido);
                     // sumar los puntos correspondientes
-                    String nombreJugador =campos[5];
+                    String nombreApostador =campos[5];
 
-                    Jugador jugador = null;
-                    if(jugadores.containsKey(nombreJugador)) {
-                        jugador = jugadores.get(nombreJugador);
+                    Apostador apostador = null;
+                    if(apostadores.containsKey(nombreApostador)) {
+                        apostador = apostadores.get(nombreApostador);
 
                     } else {
-                        jugador = new Jugador(nombreJugador);
-                        jugadores.put(nombreJugador, jugador);
+                        apostador = new Apostador(nombreApostador);
+                        apostadores.put(nombreApostador, apostador);
                     }
-                    jugador.addPronostico(pronostico);
+                    apostador.addPronostico(pronostico);
 
 
                 }
             }
 
             // Calcular bonus por ronda
-            for (String nombreJugador : jugadores.keySet()) {
-                for (Ronda ronda : fixture.rondas()) {
-                    Jugador jugador = jugadores.get(nombreJugador);
-                    List<Pronostico> apuestas = jugador.getPronosticos();
+            for (String nombreApostador : apostadores.keySet()) {
+                for (Ronda ronda : resultado.rondas()) {
+                    Apostador apostador = apostadores.get(nombreApostador);
+                    List<Pronostico> apuestas = apostador.getPronosticos();
                     boolean cumplioRonda = ronda.acertoTodos(apuestas);
                     if(cumplioRonda) {
-                        jugador.incPuntosPorBonus(2);
+                        apostador.incPuntosPorBonus(2);
                     }
                 }
             }
 
 
-            // mostrar los puntos
-            for (String jugador : jugadores.keySet()) {
+            // mostrar los puntos obtenidos por el apostador
+            for (String apostador : apostadores.keySet()) {
 
-                System.out.println("Los puntos obtenidos por el jugador " + jugador +
+                System.out.println("Los puntos obtenidos por el apostador " + apostador +
                         " fueron:");
-                System.out.println(jugadores.get(jugador).puntosTotales());
+                System.out.println(apostadores.get(apostador).puntosTotales());
             }
-
 
         }
 
