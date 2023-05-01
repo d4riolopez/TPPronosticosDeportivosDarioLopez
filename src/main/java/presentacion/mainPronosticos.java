@@ -24,14 +24,13 @@ public class mainPronosticos {
                 resultado.cargar();
             } catch (ArchResultadoException e) {
                 System.out.println("No se pudo leer el archivo de resultados: ");
-                        //+ e.getArchivoCsv());
+
                 System.out.println(e.getMessage());
                 System.exit(1);
             }
 
             // Leer pronostico del apostador po el archivo pronostico.csv
             Map<String, Apostador> apostadores = new HashMap<>();
-
             Path pathPronostico = Paths.get(args[1]);
             List<String> lineasPronostico = null;
             try {
@@ -50,7 +49,7 @@ public class mainPronosticos {
                     Equipo equipo1 = new Equipo(campos[0]);
                     Equipo equipo2 = new Equipo(campos[4]);
                     Ronda ronda = new Ronda(campos[5]);
-                    Partido partido = resultado.partidoDeApuesta(equipo1,equipo2);
+                    Partido partido = resultado.partidoDeApuesta(equipo1,equipo2,ronda);
 
                     Equipo equipo = null;
                     EnumResultado resultadoPartido = null;

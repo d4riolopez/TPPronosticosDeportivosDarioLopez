@@ -40,13 +40,13 @@ public class Resultado {
         return partido;
     }
 
-    public void cargar() throws ArchResultadoException {
-        Path pathResultados = Paths.get(this.archivoCsv);
+    public void cargar() {
+        Path pathResultados = Paths.get("src/main/resources/resultados.csv");
         List<String> lineasResultados = null;
         try {
             lineasResultados = Files.readAllLines(pathResultados);
         } catch (IOException e) {
-            throw new ArchResultadoException();//this.archivoCsv);
+
         }
         boolean primera = true;
         for (String lineaResultado : lineasResultados) {
@@ -72,8 +72,7 @@ public class Resultado {
         }
     }
 
-    public Partido partidoDeApuesta(Equipo equipo1, Equipo equipo2)
-            throws PartidoNoEncontradoException {
+    public Partido partidoDeApuesta(Equipo equipo1, Equipo equipo2,Ronda ronda) {
 
         for (Partido partidoCol : partidos) {
             if (partidoCol.getEquipo1().getNombre(
@@ -85,7 +84,7 @@ public class Resultado {
 
             }
         }
-        throw new PartidoNoEncontradoException(equipo1,equipo2);
+
     }
 
     public Collection<Ronda> rondas() {
